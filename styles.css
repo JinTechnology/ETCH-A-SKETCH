@@ -140,12 +140,13 @@ h1 {
 
 #container {
     display: grid;
-    grid-template-columns: repeat(16, 2rem);
+    /* grid-template-columns: repeat(16, 1fr); */
     margin: 0 auto;
-    height: 75vh;
+    height: 80vh;
+    width: 80vh;
     border: 1px solid black;
-    max-width: 512px;
-    max-height: 512px;
+    max-width: 640px;
+    max-height: 640px;
 }
 
 .squareDiv {
@@ -154,7 +155,7 @@ h1 {
 }
 
 .squareDiv:hover {
-    transition-duration: 3s;
+    transition-duration: 2s;
     transform: scale(1.1);
 
 }
