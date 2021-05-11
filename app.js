@@ -20,11 +20,19 @@ defaultGrid();
 //? 2) number of columns 
 //? 3) size of the boxes
 const gridSize = document.querySelector('.gridSize');
-let gridInput = "";
+//! check to see if gridInput is a number, and is between 0 and 100
 gridSize.addEventListener('click', () => {
-    //! check to see if gridInput is a number, and is between 0 and 100
+    let gridInput = "";
+    let isGridInputValid = false;
+    while (!isGridInputValid) {
+        gridInput = parseInt(prompt('Choose number squares per side', 16));
+        if (typeof(gridInput) === 'number' && gridInput >= 1 && gridInput < 101) {
+            isGridInputValid = true;
+        }
+    }
+    // while (typeof(gridInput) === 'string' && gridInput <= 0 && gridInput > 100) {  
+    // }
 
-    gridInput = parseInt(prompt('Choose number squares per side', 16));
 
 
     gridSizeChange(gridInput);
