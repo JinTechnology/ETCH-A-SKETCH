@@ -37,8 +37,11 @@ function gridSizeSelector(input) {
         containerDiv.appendChild(div);
         div.addEventListener('mouseover', () => {
             if (!isRGB) {
+                div.style.backgroundColor = '';
                 div.classList.add('addColor')
             } else {
+                div.style.backgroundColor = '';
+                div.classList.remove('addColor');
                 rgbGenerator(div);
 
             }
@@ -62,7 +65,6 @@ gridSize.addEventListener('click', () => {
     gridSizeSelector(gridInput);
 })
 
-
 //* Reset/Clearing current grid'
 const clearGridBtn = document.querySelector('.clearGridBtn');
 clearGridBtn.addEventListener('click', removeBlack);
@@ -71,5 +73,6 @@ function removeBlack() {
     const allDivs = document.querySelectorAll('.squareDiv');
     allDivs.forEach((e) => {
         e.classList.remove('addColor');
+        e.style.backgroundColor = null;
     })
 }
