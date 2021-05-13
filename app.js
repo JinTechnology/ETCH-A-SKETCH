@@ -1,7 +1,32 @@
 const containerDiv = document.querySelector('#container');
 
+//* RGB 
+const rgbButton = document.querySelector('.randomRGB');
+let isRGB = false;
+//function for random rgb generator
+function rgbGenerator(element) {
+    let randomRed = Math.floor(Math.random() * 255);
+    let randomGreen = Math.floor(Math.random() * 255);
+    let randomBlue = Math.floor(Math.random() * 255);
+    if (isRGB) {
+        element.style.backgroundColor = `rgb(${randomRed},${randomGreen},${randomBlue})`
+    } else {
+        return;
+    }
+}
+// clicking activate rainbow button should turn isRGB variable to true
+rgbButton.addEventListener('click', () => {
+    if (!isRGB) {
+        isRGB = true;
+    } else {
+        isRGB = false;
+    }
+    console.log(isRGB);
+})
+
+//* choosing a grid size
 function gridSizeSelector(input) {
-    //? clear the current board of all divs
+    // clear the current board of all divs
     document.querySelectorAll('.squareDiv').forEach((e) => {
         e.remove();
     })
@@ -11,10 +36,14 @@ function gridSizeSelector(input) {
         div.classList.add('squareDiv');
         containerDiv.appendChild(div);
         div.addEventListener('mouseover', () => {
-            div.classList.add('addColor')
+            if (!isRGB) {
+                div.classList.add('addColor')
+            } else {
+                rgbGenerator(div);
+
+            }
         })
         containerDiv.style.setProperty('grid-template-columns', `repeat(${input},1fr)`);
-
     }
 }
 gridSizeSelector(16);
@@ -36,27 +65,11 @@ gridSize.addEventListener('click', () => {
 
 //* Reset/Clearing current grid'
 const clearGridBtn = document.querySelector('.clearGridBtn');
-clearGridBtn.addEventListener('click', resetColor);
+clearGridBtn.addEventListener('click', removeBlack);
 
-function resetColor() {
+function removeBlack() {
     const allDivs = document.querySelectorAll('.squareDiv');
     allDivs.forEach((e) => {
         e.classList.remove('addColor');
     })
-}
-
-//* randomize color generater
-//? Requirements: 
-//? There should be an optional button to click to activate random color generator 
-//? random color generator should only work after clicking. Default is black
-//? when rgb actived, change css to add rgb
-const rgbButton = document.querySelector('.randomRGB');
-
-//function for random rgb generator
-function rgbGenerator() {
-    let randomRed = Math.floor(Math.random() * 255);
-    let randomGreen = Math.floor(Math.random() * 255);
-    let randomBlue = Math.floor(Math.random() * 255);
-
-    return `rgb(${randomRed},${randomGreen},${randomBlue})`
 }
